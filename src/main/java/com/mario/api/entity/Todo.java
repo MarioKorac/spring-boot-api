@@ -1,6 +1,5 @@
 package com.mario.api.entity;
 
-import com.mario.api.dto.UserDto;
 
 import javax.persistence.*;
 

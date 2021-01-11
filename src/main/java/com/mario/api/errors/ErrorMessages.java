@@ -7,7 +7,7 @@ public enum ErrorMessages {
     LIST_IS_EMPTY("DB doesnt contains any records!"),
     RECORD_DOES_NOT_EXIST("Record doesnt exist!"),
     BAD_TOKEN_REQUEST("Username and password required"),
-    TOKEN_IS_NOT_VALID("Token is not valid!");
+    TOKEN_IS_NOT_VALID("There is no record with that username and password");
 
 
 

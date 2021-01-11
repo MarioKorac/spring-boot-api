@@ -8,6 +8,7 @@ public class UserResponse {
     private String userId;
     private String firstName;
     private String lastName;
+    private String email;
     private int age;
     private List<TodoResponse> todos;
 
@@ -15,10 +16,11 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(String userId, String firstName, String lastName, int age, List<TodoResponse> todos) {
+    public UserResponse(String userId, String firstName, String lastName,String email, int age, List<TodoResponse> todos) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.age = age;
         this.todos = todos;
     }
@@ -61,5 +63,13 @@ public class UserResponse {
 
     public void setTodos(List<TodoResponse> todos) {
         this.todos = todos;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

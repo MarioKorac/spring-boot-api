@@ -35,8 +35,7 @@ public class UserController {
         List<UserResponse> returnValue = new ArrayList<>();
         List<UserDto> usersDto = userService.findAll();
         for (UserDto userDto : usersDto){
-            UserResponse userResponse = new UserResponse();
-            BeanUtils.copyProperties(userDto,userResponse);
+            UserResponse userResponse = model.map(userDto,UserResponse.class);
             returnValue.add(userResponse);
         }
         return returnValue;
@@ -62,9 +61,7 @@ public class UserController {
     public UserResponse findUserById(@PathVariable String userId) {
 
         UserDto userDto = userService.findUserById(userId);
-        UserResponse returnValue = new UserResponse();
-
-        BeanUtils.copyProperties(userDto,returnValue);
+        UserResponse returnValue = model.map(userDto,UserResponse.class);
 
         return returnValue;
     }
@@ -82,12 +79,11 @@ public class UserController {
     public UserResponse updateUser(@RequestBody UserRequest userRequest, @PathVariable String userId){
 
         UserDto userDto = new UserDto();
+        userDto = model.map(userRequest,UserDto.class);
         userDto.setUserId(userId);
-        BeanUtils.copyProperties(userRequest,userDto);
         userDto = userService.updateUser(userDto);
 
-        UserResponse returnValue = new UserResponse();
-        BeanUtils.copyProperties(userDto,returnValue);
+        UserResponse returnValue = model.map(userDto,UserResponse.class);
 
         return returnValue;
 

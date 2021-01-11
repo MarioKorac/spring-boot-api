@@ -1,7 +1,6 @@
 package com.mario.api.service;
 
 import com.mario.api.dto.TodoDto;
-import com.mario.api.entity.Todo;
 import com.mario.api.errors.ErrorMessages;
 import com.mario.api.dto.UserDto;
 import com.mario.api.entity.User;
@@ -10,7 +9,6 @@ import com.mario.api.exceptions.UserServiceException;
 import com.mario.api.repository.UserRepository;
 import com.mario.api.utils.GenerateUserId;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +47,7 @@ public class UserServiceImpl implements UserService{
 
         List<UserDto> returnValue = new ArrayList<>();
         for (User user : users){
-            UserDto UserDto = new UserDto();
-            BeanUtils.copyProperties(user,UserDto);
+            UserDto UserDto = model.map(user, com.mario.api.dto.UserDto.class);
             returnValue.add(UserDto);
         }
 
@@ -98,7 +95,7 @@ public class UserServiceImpl implements UserService{
 
         try {
             User userEntity = userRepository.findByUserId(userId);
-            BeanUtils.copyProperties(userEntity,userDto);
+            userDto = model.map(userEntity,UserDto.class);
 
         }catch (Exception e){
             throw new RepositoryServiceException(ErrorMessages.RECORD_DOES_NOT_EXIST.getErrorMessage());
@@ -132,8 +129,8 @@ public class UserServiceImpl implements UserService{
         user.setAge(userDto.getAge());
 
         userRepository.save(user);
+        userDto = model.map(user,UserDto.class);
 
-        BeanUtils.copyProperties(user,userDto);
         return userDto;
 
 

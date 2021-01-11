@@ -30,7 +30,7 @@ public class JwtController {
     @PostMapping(value = "/authenticate",consumes = MediaType.APPLICATION_JSON_VALUE)
     public String getToken(@RequestBody JwtRequestToken requestToken) throws TokenServiceException {
 
-        if (requestToken.getUsername().isEmpty() && requestToken.getPassword().isEmpty()) throw new TokenServiceException(ErrorMessages.BAD_TOKEN_REQUEST.getErrorMessage());
+        if (requestToken.getUsername().isEmpty() || requestToken.getPassword().isEmpty()) throw new TokenServiceException(ErrorMessages.BAD_TOKEN_REQUEST.getErrorMessage());
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requestToken.getUsername(),requestToken.getPassword()));
