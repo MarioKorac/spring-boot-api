@@ -1,15 +1,23 @@
 package com.mario.api.dto;
 
 
-import com.mario.api.entity.User;
-
-
 public class TodoDto {
 
-
+    private int id;
+    private String todoId;
     private String todoName;
     private String isDone;
-    private User user;
+    private UserDto user;
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTodoName() {
         return todoName;
@@ -27,5 +35,19 @@ public class TodoDto {
         this.isDone = isDone;
     }
 
+    public UserDto getUser() {
+        return user;
+    }
 
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
+
+    public String getTodoId() {
+        return todoId;
+    }
+
+    public void setTodoId(String todoId) {
+        this.todoId = todoId;
+    }
 }

@@ -67,27 +67,27 @@ public class UserServiceImpl implements UserService{
             throw new UserServiceException(ErrorMessages.RECORD_ALREADY_EXIST.getErrorMessage());
         }
 
-        userDto.setUserId(generateUserId.generateString());
-        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-
-        User user = new User();
-
         for (int i = 0; i < userDto.getTodos().size() ; i++) {
-            user.setUserId(userDto.getUserId());
-            user.setFirstName(userDto.getFirstName());
-            user.setLastName(userDto.getLastName());
-            user.setPassword(userDto.getPassword());
-            user.setEmail(userDto.getEmail());
-            user.setTodos(userDto.getTodos());
+            TodoDto todoDto = userDto.getTodos().get(i);
+            todoDto.setUser(userDto);
+            todoDto.setTodoId(generateUserId.generateString());
+            userDto.getTodos().set(i,todoDto);
+
         }
 
 
-        //user = model.map(userDto,User.class);
+        User user = model.map(userDto,User.class);
+
+
+        user.setUserId(generateUserId.generateString());
+        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 
         userRepository.save(user);
 
-        System.out.println(user.getTodos());
-        return userDto;
+        UserDto returnValue = model.map(user,UserDto.class);
+
+
+        return returnValue;
     }
 
 

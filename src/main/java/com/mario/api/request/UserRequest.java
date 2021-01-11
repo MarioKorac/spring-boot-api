@@ -1,6 +1,5 @@
 package com.mario.api.request;
 
-import com.mario.api.dto.TodoDto;
 
 import java.util.List;
 
@@ -11,9 +10,9 @@ public class UserRequest {
     private String password;
     private String email;
     private int age;
-    private List<TodoDto> todos;
+    private List<TodoRequest> todos;
 
-    public UserRequest(String firstName, String lastName,String password, String email, int age,List<TodoDto> todos) {
+    public UserRequest(String firstName, String lastName,String password, String email, int age,List<TodoRequest> todos) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -66,11 +65,11 @@ public class UserRequest {
         this.password = password;
     }
 
-    public List<TodoDto> getTodos() {
+    public List<TodoRequest> getTodos() {
         return todos;
     }
 
-    public void setTodos(List<TodoDto> todos) {
+    public void setTodos(List<TodoRequest> todos) {
         this.todos = todos;
     }
 }

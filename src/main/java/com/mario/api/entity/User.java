@@ -29,7 +29,7 @@ public class User {
     @Column(length = 3)
     private int age;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
     private List<Todo> todos;
 
 

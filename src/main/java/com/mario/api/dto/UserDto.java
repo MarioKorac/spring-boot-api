@@ -1,9 +1,6 @@
 package com.mario.api.dto;
 
 
-
-import com.mario.api.entity.Todo;
-
 import java.util.List;
 
 public class UserDto {
@@ -15,7 +12,7 @@ public class UserDto {
     private String email;
     private int age;
 
-    private List<Todo> todos;
+    private List<TodoDto> todos;
 
 
 
@@ -68,11 +65,11 @@ public class UserDto {
         this.age = age;
     }
 
-    public List<Todo> getTodos() {
+    public List<TodoDto> getTodos() {
         return todos;
     }
 
-    public void setTodos(List<Todo> todos) {
+    public void setTodos(List<TodoDto> todos) {
         this.todos = todos;
     }
 }

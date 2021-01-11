@@ -1,5 +1,7 @@
 package com.mario.api.entity;
 
+import com.mario.api.dto.UserDto;
+
 import javax.persistence.*;
 
 @Entity(name = "todos")
@@ -7,7 +9,8 @@ public class Todo {
 
     @Id
     @GeneratedValue
-    private int todoId;
+    private int id;
+    private String todoId;
     private String todoName;
     private String isDone;
 
@@ -20,19 +23,26 @@ public class Todo {
     public Todo() {
     }
 
-
-    public Todo(int todoId, String todoName, String isDone, User user) {
+    public Todo(String todoId, String todoName, String isDone, User user) {
         this.todoId = todoId;
         this.todoName = todoName;
         this.isDone = isDone;
         this.user = user;
     }
 
-    public int getTodoId() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTodoId() {
         return todoId;
     }
 
-    public void setTodoId(int todoId) {
+    public void setTodoId(String todoId) {
         this.todoId = todoId;
     }
 

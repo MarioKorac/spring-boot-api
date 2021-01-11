@@ -50,6 +50,7 @@ public class UserController {
         UserDto userDto = model.map(userRequest,UserDto.class);
 
         userService.createUser(userDto);
+
         UserResponse returnValue = model.map(userDto,UserResponse.class);
 
         return returnValue;
